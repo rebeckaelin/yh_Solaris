@@ -64,6 +64,10 @@ function printInfo(data, num) {
   maxTemp.innerText = `${data[num].temp.day}°C`;
   minTemp.innerText = `${data[num].temp.night}°C`;
 
+  if (data[num].moons.length === 0) {
+    moons.innerText = `Har inga månar`;
+  }
+
   let newMoonList = [...new Set(data[num].moons)];
   newMoonList.forEach((moon) => {
     const moonListItem = document.createElement("li");

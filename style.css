@@ -145,7 +145,7 @@ main {
 
 /* INFOSIDAN */
 .info-page {
-  margin-top: 4rem;
+  margin-top: 2.3rem;
   display: flex;
   justify-content: space-evenly;
   height: 56.25rem;
@@ -158,9 +158,9 @@ main {
 }
 
 .one {
-  border-radius: 79.875rem;
   width: 69.875rem;
   height: 69.875rem;
+  border-radius: 50%;
   margin-left: -70rem;
   position: absolute;
   top: 0;
@@ -172,7 +172,7 @@ main {
 .two {
   width: 73.75rem;
   height: 73.75rem;
-  border-radius: 83.75rem;
+  border-radius: 50%;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -183,7 +183,7 @@ main {
 .three {
   width: 77.75rem;
   height: 77.75rem;
-  border-radius: 87.75rem;
+  border-radius: 50%;
   position: absolute;
   top: 0;
   bottom: 0;
