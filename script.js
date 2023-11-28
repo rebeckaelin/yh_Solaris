@@ -1,4 +1,4 @@
-// DOM PLANETER & SOLEN
+// DOM för  planeter och solen
 const sun = document.getElementById("sun");
 const mercury = document.getElementById("mercury");
 const venus = document.getElementById("venus");
@@ -9,12 +9,12 @@ const saturn = document.getElementById("saturn");
 const uranus = document.getElementById("uranus");
 const neptunus = document.getElementById("neptunus");
 
-// DOM - PLANETEN I INFODELEN
+// DOM för "planeten" i infodelen
 partOne = document.getElementById("part-one");
 partTwo = document.getElementById("part-two");
 partThree = document.getElementById("part-three");
 
-// DOM INFORMATION
+// DOM för informationen om planeten och solen
 const planetTitle = document.getElementById("planet-desc-title");
 const planetTitleLatin = document.getElementById("planet-desc-latin");
 const planetDesc = document.getElementById("planet-desc-text");
@@ -24,11 +24,12 @@ const maxTemp = document.getElementById("max-temp");
 const minTemp = document.getElementById("min-temp");
 const moons = document.getElementById("moons");
 const closeButton = document.getElementById("close-button");
-// const planets = document.getElementById("planets");
+
+// DOM för att gömma de olika elementen
 const infoPage = document.getElementById("info-page");
 const header = document.getElementById("wrapper");
 
-// funktion för att hämta API-nyckel
+// funktion för att hämta API-nyckel och sedan data från ett API
 async function getBodiesData() {
   let response = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys",
@@ -39,7 +40,6 @@ async function getBodiesData() {
   let keyData = await response.json();
   let apiKey = keyData.key;
 
-  // funktion för att hämta data med API-nyckeln från ovan funktion
   let resp = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
     {
@@ -50,6 +50,7 @@ async function getBodiesData() {
   data = await resp.json();
   return data.bodies;
 }
+//anropar datan så det snabbt skall gå att skriva ut datan från den
 getBodiesData();
 
 // funktion för att skriva ut informationen
@@ -70,7 +71,7 @@ function printInfo(data, num) {
     moons.append(moonListItem);
   });
 }
-
+//funktion för vad som skall hända på varje eventL nedan
 function planetClick(color, index) {
   stars();
   header.classList.add("hide");
@@ -79,6 +80,28 @@ function planetClick(color, index) {
   partTwo.style.backgroundColor = `rgba(${color}, 0.1)`;
   partThree.style.backgroundColor = `rgba(${color}, 0.06)`;
   printInfo(data.bodies, index);
+}
+// funktion för att rita upp stjärnor
+function stars() {
+  let canvas = document.getElementById("stars");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; // Vit färg med 50% opacitet
+
+  for (let i = 0; i < 300; i++) {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height;
+    let radius = Math.random() * 2;
+
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.shadowColor = "rgba(255, 255, 255, 1)";
+    ctx.shadowBlur = 2;
+    ctx.fill();
+    ctx.stroke();
+    ctx.shadowColor = "transparent"; // Återställer skuggfärgen
+    ctx.shadowBlur = 0; // Återställer skuggoskärpan
+  }
 }
 
 sun.addEventListener("click", () => {
@@ -114,27 +137,3 @@ closeButton.addEventListener("click", () => {
   header.classList.remove("hide");
   infoPage.classList.add("hide");
 });
-
-// STARS
-
-function stars() {
-  let canvas = document.getElementById("stars");
-  let ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; // Vit färg med 50% opacitet
-
-  for (let i = 0; i < 150; i++) {
-    let x = Math.random() * canvas.width;
-    let y = Math.random() * canvas.height;
-    let radius = Math.random() * 2;
-
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.shadowColor = "rgba(255, 255, 255, 1)"; // Gul färg med full opacitet
-    ctx.shadowBlur = 2;
-    ctx.fill(); // använd fill istället för stroke för att fylla i stjärnorna
-    ctx.stroke();
-    ctx.shadowColor = "transparent"; // Återställer skuggfärgen
-    ctx.shadowBlur = 0; // Återställer skuggoskärpan
-  }
-}
