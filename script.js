@@ -99,8 +99,6 @@ function stars() {
     ctx.shadowBlur = 2;
     ctx.fill();
     ctx.stroke();
-    ctx.shadowColor = "transparent"; // Återställer skuggfärgen
-    ctx.shadowBlur = 0; // Återställer skuggoskärpan
   }
 }
 
