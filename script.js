@@ -63,93 +63,50 @@ function printInfo(data, num) {
   maxTemp.innerText = `${data[num].temp.day}°C`;
   minTemp.innerText = `${data[num].temp.night}°C`;
 
-  data[num].moons.forEach((moon) => {
+  let newMoonList = [...new Set(data[num].moons)];
+  newMoonList.forEach((moon) => {
     const moonListItem = document.createElement("li");
     moonListItem.innerText = moon;
     moons.append(moonListItem);
   });
 }
 
-sun.addEventListener("click", () => {
-  // planets.classList.add("hide");
+function planetClick(color, index) {
+  stars();
   header.classList.add("hide");
   infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(255, 208, 41, 1)";
-  partTwo.style.backgroundColor = "rgba(255, 208, 41, 0.1)";
-  partThree.style.backgroundColor = "rgba(255, 208, 41, 0.06)";
-  printInfo(data.bodies, 0);
+  partOne.style.backgroundColor = `rgba(${color}, 1)`;
+  partTwo.style.backgroundColor = `rgba(${color}, 0.1)`;
+  partThree.style.backgroundColor = `rgba(${color}, 0.06)`;
+  printInfo(data.bodies, index);
+}
+
+sun.addEventListener("click", () => {
+  planetClick(`255, 208, 41`, 0);
 });
 mercury.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(136, 136, 136, 1)";
-  partTwo.style.backgroundColor = "rgba(136, 136, 136, 0.1)";
-  partThree.style.backgroundColor = "rgba(136, 136, 136, 0.06)";
-  printInfo(data.bodies, 1);
+  planetClick(`136, 136, 136`, 1);
 });
 venus.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(231, 205, 205, 1)";
-  partTwo.style.backgroundColor = "rgba(231, 205, 205, 0.1)";
-  partThree.style.backgroundColor = "rgba(231, 205, 205, 0.06)";
-  printInfo(data.bodies, 2);
+  planetClick(`231, 205, 205`, 2);
 });
 earth.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(66, 142, 212, 1)";
-  partTwo.style.backgroundColor = "rgba(66, 142, 212, 0.1)";
-  partThree.style.backgroundColor = "rgba(66, 142, 212, 0.06)";
-  printInfo(data.bodies, 3);
+  planetClick(`66, 142, 212`, 3);
 });
 mars.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(239, 95, 95, 1)";
-  partTwo.style.backgroundColor = "rgba(239, 95, 95, 0.1)";
-  partThree.style.backgroundColor = "rgba(239, 95, 95, 0.06)";
-  printInfo(data.bodies, 4);
+  planetClick(`239, 95, 95`, 4);
 });
 jupiter.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(226, 148, 104, 1)";
-  partTwo.style.backgroundColor = "rgba(226, 148, 104, 0.1)";
-  partThree.style.backgroundColor = "rgba(226, 148, 104, 0.06)";
-  printInfo(data.bodies, 5);
+  planetClick(`226, 148, 104`, 5);
 });
 saturn.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(199, 170, 114, 1)";
-  partTwo.style.backgroundColor = "rgba(199, 170, 114, 0.1)";
-  partThree.style.backgroundColor = "rgba(199, 170, 114, 0.06)";
-  printInfo(data.bodies, 6);
+  planetClick(`199, 170, 114`, 6);
 });
 uranus.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(201, 212, 241, 1)";
-  partTwo.style.backgroundColor = "rgba(201, 212, 241, 0.1)";
-  partThree.style.backgroundColor = "rgba(201, 212, 241, 0.06)";
-  printInfo(data.bodies, 7);
+  planetClick(`201, 212, 241`, 7);
 });
 neptunus.addEventListener("click", () => {
-  // planets.classList.add("hide");
-  header.classList.add("hide");
-  infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = "rgba(122, 145, 167, 1)";
-  partTwo.style.backgroundColor = "rgba(122, 145, 167, 0.1)";
-  partThree.style.backgroundColor = "rgba(122, 145, 167, 0.06)";
-  printInfo(data.bodies, 8);
+  planetClick(`122, 145, 167`, 8);
 });
 
 closeButton.addEventListener("click", () => {
@@ -159,17 +116,25 @@ closeButton.addEventListener("click", () => {
 });
 
 // STARS
-let canvas = document.getElementById("stars");
-let ctx = canvas.getContext("2d");
-ctx.fillStyle = "white";
-ctx.globalAlpha = 0.5; // gör stjärnorna halvgenomskinliga
 
-for (let i = 0; i < 100; i++) {
-  let x = Math.random() * canvas.width;
-  let y = Math.random() * canvas.height;
-  let radius = Math.random() * 2;
+function stars() {
+  let canvas = document.getElementById("stars");
+  let ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; // Vit färg med 50% opacitet
 
-  ctx.beginPath();
-  ctx.arc(x, y, radius, 0, 2 * Math.PI);
-  ctx.fill(); // använd fill istället för stroke för att fylla i stjärnorna
+  for (let i = 0; i < 150; i++) {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height;
+    let radius = Math.random() * 2;
+
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.shadowColor = "rgba(255, 255, 255, 1)"; // Gul färg med full opacitet
+    ctx.shadowBlur = 2;
+    ctx.fill(); // använd fill istället för stroke för att fylla i stjärnorna
+    ctx.stroke();
+    ctx.shadowColor = "transparent"; // Återställer skuggfärgen
+    ctx.shadowBlur = 0; // Återställer skuggoskärpan
+  }
 }

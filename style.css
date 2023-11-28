@@ -259,7 +259,7 @@ h3 {
 .moons {
   display: grid;
   grid-template-columns: repeat(4, 14rem);
-  /* gap: 0.7rem; */
+  gap: 0.3rem;
 }
 
 button {
