@@ -9,7 +9,7 @@ const saturn = document.getElementById("saturn");
 const uranus = document.getElementById("uranus");
 const neptunus = document.getElementById("neptunus");
 
-// DOM PLANETEN I INFO
+// DOM - PLANETEN I INFODELEN
 partOne = document.getElementById("part-one");
 partTwo = document.getElementById("part-two");
 partThree = document.getElementById("part-three");
@@ -37,8 +37,8 @@ async function getBodiesData() {
   );
   let keyData = await response.json();
   let apiKey = keyData.key;
-  // funktion för att hämta data med API-nyckeln från ovan funktion
 
+  // funktion för att hämta data med API-nyckeln från ovan funktion
   let resp = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
     {
@@ -47,9 +47,6 @@ async function getBodiesData() {
     }
   );
   data = await resp.json();
-
-  //   console.log(data);
-  //   console.log(data.bodies);
   return data.bodies;
 }
 
@@ -57,8 +54,6 @@ getBodiesData();
 
 // funktion för att skriva ut informationen
 function printInfo(data, num) {
-  // let data = await getBodiesData();
-  //   console.log(data[num]);
   moons.innerHTML = "";
   planetTitle.innerText = data[num].name.toUpperCase();
   planetTitleLatin.innerText = data[num].latinName.toUpperCase();
