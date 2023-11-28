@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="wrapper">
+    <div id="wrapper">
       <header>
         <h1>SOLSYSTEMET</h1>
         <h2>SOLARIS</h2>
@@ -15,24 +15,29 @@
 
       <main class="planets" id="planets">
         <div class="sun" id="sun"></div>
-        <div class="mercury" id="mercury"></div>
-        <div class="venus" id="venus"></div>
-        <div class="earth" id="earth"></div>
-        <div class="mars" id="mars"></div>
-        <div class="jupiter" id="jupiter"></div>
-        <div class="saturn" id="saturn"><div class="saturn-ring"></div></div>
-        <div class="uranus" id="uranus"></div>
-        <div class="neptunus" id="neptunus"></div>
+        <div class="mercury hover-effect" id="mercury"></div>
+        <div class="venus hover-effect" id="venus"></div>
+        <div class="earth hover-effect" id="earth"></div>
+        <div class="mars hover-effect" id="mars"></div>
+        <div class="jupiter hover-effect" id="jupiter"></div>
+        <div class="saturn hover-effect" id="saturn">
+          <div class="saturn-ring"></div>
+        </div>
+        <div class="uranus hover-effect" id="uranus"></div>
+        <div class="neptunus hover-effect" id="neptunus"></div>
       </main>
     </div>
+
+
     <section class="info-page hide" id="info-page">
-      <div class="info-planet">
+      <canvas class="stars" id="stars" width="1500" height="1400"></canvas>
+      <section class="info-planet">
         <div class="one" id="part-one"></div>
         <div class="two" id="part-two"></div>
         <div class="three" id="part-three"></div>
-      </div>
-      <article class="planet-desc">
-        <button id="close-button">X</button>
+      </setion>
+      <section class="planet-desc">
+        <button id="close-button">🚀</button>
         <h1 id="planet-desc-title"></h1>
         <h2 id="planet-desc-latin"></h2>
         <p id="planet-desc-text"></p>
@@ -58,7 +63,7 @@
           <h3>MÅNAR</h3>
           <ul class="moons" id="moons"></ul>
         </section>
-      </article>
+      </section>
     </section>
 
     <script src="./script.js"></script>

@@ -24,8 +24,9 @@ const maxTemp = document.getElementById("max-temp");
 const minTemp = document.getElementById("min-temp");
 const moons = document.getElementById("moons");
 const closeButton = document.getElementById("close-button");
-const planets = document.getElementById("planets");
+// const planets = document.getElementById("planets");
 const infoPage = document.getElementById("info-page");
+const header = document.getElementById("wrapper");
 
 // funktion för att hämta API-nyckel
 async function getBodiesData() {
@@ -49,7 +50,6 @@ async function getBodiesData() {
   data = await resp.json();
   return data.bodies;
 }
-
 getBodiesData();
 
 // funktion för att skriva ut informationen
@@ -71,7 +71,8 @@ function printInfo(data, num) {
 }
 
 sun.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(255, 208, 41, 1)";
   partTwo.style.backgroundColor = "rgba(255, 208, 41, 0.1)";
@@ -79,7 +80,8 @@ sun.addEventListener("click", () => {
   printInfo(data.bodies, 0);
 });
 mercury.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(136, 136, 136, 1)";
   partTwo.style.backgroundColor = "rgba(136, 136, 136, 0.1)";
@@ -87,7 +89,8 @@ mercury.addEventListener("click", () => {
   printInfo(data.bodies, 1);
 });
 venus.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(231, 205, 205, 1)";
   partTwo.style.backgroundColor = "rgba(231, 205, 205, 0.1)";
@@ -95,7 +98,8 @@ venus.addEventListener("click", () => {
   printInfo(data.bodies, 2);
 });
 earth.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(66, 142, 212, 1)";
   partTwo.style.backgroundColor = "rgba(66, 142, 212, 0.1)";
@@ -103,7 +107,8 @@ earth.addEventListener("click", () => {
   printInfo(data.bodies, 3);
 });
 mars.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(239, 95, 95, 1)";
   partTwo.style.backgroundColor = "rgba(239, 95, 95, 0.1)";
@@ -111,7 +116,8 @@ mars.addEventListener("click", () => {
   printInfo(data.bodies, 4);
 });
 jupiter.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(226, 148, 104, 1)";
   partTwo.style.backgroundColor = "rgba(226, 148, 104, 0.1)";
@@ -119,7 +125,8 @@ jupiter.addEventListener("click", () => {
   printInfo(data.bodies, 5);
 });
 saturn.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(199, 170, 114, 1)";
   partTwo.style.backgroundColor = "rgba(199, 170, 114, 0.1)";
@@ -127,7 +134,8 @@ saturn.addEventListener("click", () => {
   printInfo(data.bodies, 6);
 });
 uranus.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(201, 212, 241, 1)";
   partTwo.style.backgroundColor = "rgba(201, 212, 241, 0.1)";
@@ -135,7 +143,8 @@ uranus.addEventListener("click", () => {
   printInfo(data.bodies, 7);
 });
 neptunus.addEventListener("click", () => {
-  planets.classList.add("hide");
+  // planets.classList.add("hide");
+  header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = "rgba(122, 145, 167, 1)";
   partTwo.style.backgroundColor = "rgba(122, 145, 167, 0.1)";
@@ -144,6 +153,23 @@ neptunus.addEventListener("click", () => {
 });
 
 closeButton.addEventListener("click", () => {
-  planets.classList.remove("hide");
+  // planets.classList.remove("hide");
+  header.classList.remove("hide");
   infoPage.classList.add("hide");
 });
+
+// STARS
+let canvas = document.getElementById("stars");
+let ctx = canvas.getContext("2d");
+ctx.fillStyle = "white";
+ctx.globalAlpha = 0.5; // gör stjärnorna halvgenomskinliga
+
+for (let i = 0; i < 100; i++) {
+  let x = Math.random() * canvas.width;
+  let y = Math.random() * canvas.height;
+  let radius = Math.random() * 2;
+
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, 2 * Math.PI);
+  ctx.fill(); // använd fill istället för stroke för att fylla i stjärnorna
+}
