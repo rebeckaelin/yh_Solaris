@@ -7,65 +7,58 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <header>
-      <h1>SOLSYSTEMET</h1>
-      <h2>SOLARIS</h2>
-    </header>
+    <div class="wrapper">
+      <header>
+        <h1>SOLSYSTEMET</h1>
+        <h2>SOLARIS</h2>
+      </header>
 
-    <main class="planets" id="planets">
-      <div class="sun" id="sun"></div>
-      <div class="mercury" id="mercury"></div>
-      <div class="venus" id="venus"></div>
-      <div class="earth" id="earth"></div>
-      <div class="mars" id="mars"></div>
-      <div class="jupiter" id="jupiter"></div>
-      <div class="saturn" id="saturn"><div class="saturn-ring"></div></div>
-      <div class="uranus" id="uranus"></div>
-      <div class="neptunus" id="neptunus"></div>
-    </main>
-
-    <section class="info-page">
+      <main class="planets" id="planets">
+        <div class="sun" id="sun"></div>
+        <div class="mercury" id="mercury"></div>
+        <div class="venus" id="venus"></div>
+        <div class="earth" id="earth"></div>
+        <div class="mars" id="mars"></div>
+        <div class="jupiter" id="jupiter"></div>
+        <div class="saturn" id="saturn"><div class="saturn-ring"></div></div>
+        <div class="uranus" id="uranus"></div>
+        <div class="neptunus" id="neptunus"></div>
+      </main>
+    </div>
+    <section class="info-page hide" id="info-page">
       <div class="info-planet">
-        <div class="one"></div>
-        <div class="two"></div>
-        <div class="three"></div>
+        <div class="one" id="part-one"></div>
+        <div class="two" id="part-two"></div>
+        <div class="three" id="part-three"></div>
       </div>
       <article class="planet-desc">
-        <h1 id="planet-desc-title">JORDEN</h1>
-        <h2 id="planet-desc-latin">TELLUS</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste,
-          molestiae ea voluptas aut ad nam. Molestias suscipit quaerat eos
-          officiis, accusamus temporibus itaque ipsum ea repellendus nostrum
-          ipsam placeat quam . Lorem, ipsum. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Aut tempore dolor modi delectus minus
-          aliquid at pariatur quos laudantium fugiat harum quis rerum possimus
-          quia repudiandae, commodi a! Tempore, unde?
-        </p>
+        <button id="close-button">X</button>
+        <h1 id="planet-desc-title"></h1>
+        <h2 id="planet-desc-latin"></h2>
+        <p id="planet-desc-text"></p>
         <section class="planet-details">
           <div class="circumference">
             <h3>OMKRETS</h3>
-            <p id="circumference">40 075km</p>
+            <p id="circumference"></p>
           </div>
           <div class="distance-from-sun">
             <h3>KM FRÅN SOLEN</h3>
-            <p id="distance-from-sun">149 600 000 km</p>
+            <p id="distance-from-sun"></p>
           </div>
           <div class="max-temp">
             <h3>MAX TEMPERATUR</h3>
-            <p id="max-temp">60°C</p>
+            <p id="max-temp"></p>
           </div>
           <div class="min-temp">
             <h3>MIN TEMPERATUR</h3>
-            <p id="min-temp">-50°C</p>
+            <p id="min-temp"></p>
           </div>
         </section>
         <section class="moons">
           <h3>MÅNAR</h3>
-          <p id="moons">Månen</p>
+          <ul class="moons" id="moons"></ul>
         </section>
       </article>
-      <button>X</button>
     </section>
 
     <script src="./script.js"></script>
