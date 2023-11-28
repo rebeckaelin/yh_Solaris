@@ -12,12 +12,10 @@ body {
 
 /* INFOSIDAN */
 .info-page {
-  margin-top: 30rem;
+  margin-top: 10rem;
   position: relative;
   display: flex;
   justify-content: space-evenly;
-  /* border: solid 4px white; */
-  /* overflow: hidden; */
 }
 .one {
   border-radius: 79.875rem;
