@@ -88,7 +88,7 @@ function stars() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; // Vit färg med 50% opacitet
 
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 200; i++) {
     let x = Math.random() * canvas.width;
     let y = Math.random() * canvas.height;
     let radius = Math.random() * 2;
