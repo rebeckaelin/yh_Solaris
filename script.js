@@ -28,7 +28,7 @@ const closeButton = document.getElementById("close-button");
 
 // DOM för att gömma de olika elementen
 const infoPage = document.getElementById("info-page");
-const header = document.getElementById("wrapper");
+const wrapper = document.getElementById("wrapper");
 
 // funktion för att hämta API-nyckel och sedan data från ett API
 async function getBodiesData() {
@@ -80,7 +80,7 @@ function printInfo(data, num) {
 function planetClick(color, index) {
   stars();
   secondRing.classList.add("hide");
-  header.classList.add("hide");
+  wrapper.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = `rgba(${color}, 1)`;
   partTwo.style.backgroundColor = `rgba(${color}, 0.1)`;
@@ -138,6 +138,6 @@ neptunus.addEventListener("click", () => {
 });
 
 closeButton.addEventListener("click", () => {
-  header.classList.remove("hide");
+  wrapper.classList.remove("hide");
   infoPage.classList.add("hide");
 });
