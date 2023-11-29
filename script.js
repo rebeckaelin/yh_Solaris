@@ -8,6 +8,7 @@ const jupiter = document.getElementById("jupiter");
 const saturn = document.getElementById("saturn");
 const uranus = document.getElementById("uranus");
 const neptunus = document.getElementById("neptunus");
+const secondRing = document.getElementById("second-ring");
 
 // DOM för "planeten" i infodelen
 partOne = document.getElementById("part-one");
@@ -78,6 +79,7 @@ function printInfo(data, num) {
 //funktion för vad som skall hända på varje eventL nedan
 function planetClick(color, index) {
   stars();
+  secondRing.classList.add("hide");
   header.classList.add("hide");
   infoPage.classList.remove("hide");
   partOne.style.backgroundColor = `rgba(${color}, 1)`;
@@ -126,6 +128,7 @@ jupiter.addEventListener("click", () => {
 });
 saturn.addEventListener("click", () => {
   planetClick(`199, 170, 114`, 6);
+  secondRing.classList.remove("hide");
 });
 uranus.addEventListener("click", () => {
   planetClick(`201, 212, 241`, 7);
@@ -135,7 +138,6 @@ neptunus.addEventListener("click", () => {
 });
 
 closeButton.addEventListener("click", () => {
-  // planets.classList.remove("hide");
   header.classList.remove("hide");
   infoPage.classList.add("hide");
 });
