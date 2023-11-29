@@ -281,6 +281,7 @@ canvas {
   position: absolute;
   top: -15%;
   left: 13%;
+  z-index: -1;
 }
 .stars {
   pointer-events: none;

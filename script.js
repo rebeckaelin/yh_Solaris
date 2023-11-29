@@ -24,11 +24,16 @@ const distanceFromSun = document.getElementById("distance-from-sun");
 const maxTemp = document.getElementById("max-temp");
 const minTemp = document.getElementById("min-temp");
 const moons = document.getElementById("moons");
-const closeButton = document.getElementById("close-button");
 
 // DOM för att gömma de olika elementen
 const infoPage = document.getElementById("info-page");
 const wrapper = document.getElementById("wrapper");
+const closeButton = document.getElementById("close-button");
+
+// DOM för stjärnorna
+let canvas = document.getElementById("stars");
+
+// **************************************************************//
 
 // funktion för att hämta API-nyckel och sedan data från ett API
 async function getBodiesData() {
@@ -54,9 +59,9 @@ async function getBodiesData() {
 //anropar datan så det snabbt skall gå att skriva ut datan från den
 getBodiesData();
 
-// funktion för att skriva ut informationen
+// funktion för att skriva ut information om vald planet eller solen
 function printInfo(data, num) {
-  moons.innerHTML = "";
+  moons.innerHTML = ""; //nollställer listan för månarna
   planetTitle.innerText = data[num].name.toUpperCase();
   planetTitleLatin.innerText = data[num].latinName.toUpperCase();
   planetDesc.innerText = data[num].desc;
@@ -65,16 +70,19 @@ function printInfo(data, num) {
   maxTemp.innerText = `${data[num].temp.day}°C`;
   minTemp.innerText = `${data[num].temp.night}°C`;
 
+  //om det ej finns någon måne skall detta skrivas ut
   if (data[num].moons.length === 0) {
     moons.innerText = `Har inga månar`;
+  } else {
+    //skapar en ny lista om det skulle finnas dubletter av några månar.
+    let newMoonList = [...new Set(data[num].moons)];
+    //använder den nya listan för att skapa ett list item för varje måne och lägga det i min UL.
+    newMoonList.forEach((moon) => {
+      const moonListItem = document.createElement("li");
+      moonListItem.innerText = moon;
+      moons.append(moonListItem);
+    });
   }
-
-  let newMoonList = [...new Set(data[num].moons)];
-  newMoonList.forEach((moon) => {
-    const moonListItem = document.createElement("li");
-    moonListItem.innerText = moon;
-    moons.append(moonListItem);
-  });
 }
 //funktion för vad som skall hända på varje eventL nedan
 function planetClick(color, index) {
@@ -89,27 +97,27 @@ function planetClick(color, index) {
 }
 // funktion för att rita upp stjärnor
 function stars() {
-  let canvas = document.getElementById("stars");
-  let ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; // Vit färg med 50% opacitet
+  let ctx = canvas.getContext("2d"); //skapar en 2D kontext för canvasen. används för att sen kunna rita
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height); //nollställer stjärnorna så det skapas nya varje gång funktionen körs
+  ctx.fillStyle = "rgba(255, 255, 255, 0.5)"; //fyller det som ritas med vitt och sätter en opacitet
 
   for (let i = 0; i < 200; i++) {
-    let x = Math.random() * canvas.width;
-    let y = Math.random() * canvas.height;
-    let radius = Math.random() * 2;
-
-    ctx.beginPath();
-    ctx.arc(x, y, radius, 0, 2 * Math.PI);
-    ctx.shadowColor = "rgba(255, 255, 255, 1)";
-    ctx.shadowBlur = 2;
-    ctx.fill();
-    ctx.stroke();
+    //loop som kommer köras 200ggr och skapa 1 stjärna för varje varv.
+    let x = Math.random() * canvas.width; //slumpmässigt värde på bredden
+    let y = Math.random() * canvas.height; //slumpmässigt värde på höjden
+    let radius = Math.random() * 2; //slumpmässigt värde för stjärnans radie. 0-2px
+    ctx.beginPath(); //används för att tala om att vi skall rita en form i canvasen
+    ctx.arc(x, y, radius, 0, 2 * Math.PI); //cirkeln ritas. Math.PI används för att det skall bli en hel cirkel
+    ctx.shadowColor = "rgba(255, 255, 255, 1)"; //lägger på en skugga på varje cirkel
+    ctx.shadowBlur = 2; //blurrar skuggan
+    ctx.fill(); //lägger till stjärnorna på sidan
+    ctx.stroke(); //används för att skugga och blurr skall synas tydligare
   }
 }
-
+// eventlisteners för solen och planeterna så funktionerna körs när man klickar på dom.
 sun.addEventListener("click", () => {
-  planetClick(`255, 208, 41`, 0);
+  planetClick(`255, 208, 41`, 0); //färgkod och index från datan vi fetchade i början
 });
 mercury.addEventListener("click", () => {
   planetClick(`136, 136, 136`, 1);
@@ -128,7 +136,7 @@ jupiter.addEventListener("click", () => {
 });
 saturn.addEventListener("click", () => {
   planetClick(`199, 170, 114`, 6);
-  secondRing.classList.remove("hide");
+  secondRing.classList.remove("hide"); //tar bort klassen hide så ringen syns
 });
 uranus.addEventListener("click", () => {
   planetClick(`201, 212, 241`, 7);
@@ -137,6 +145,7 @@ neptunus.addEventListener("click", () => {
   planetClick(`122, 145, 167`, 8);
 });
 
+//eventlistener på tillbaka knappen så vi kan toggla mellan sidorna
 closeButton.addEventListener("click", () => {
   wrapper.classList.remove("hide");
   infoPage.classList.add("hide");
