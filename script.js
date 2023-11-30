@@ -11,9 +11,7 @@ const neptunus = document.getElementById("neptunus");
 const secondRing = document.getElementById("second-ring");
 
 // DOM för "planeten" i infodelen
-partOne = document.getElementById("part-one");
-partTwo = document.getElementById("part-two");
-partThree = document.getElementById("part-three");
+infoPlanet = document.getElementById("info-planet");
 
 // DOM för informationen om planeten och solen
 const planetTitle = document.getElementById("planet-desc-title");
@@ -90,9 +88,8 @@ function planetClick(color, index) {
   secondRing.classList.add("hide");
   wrapper.classList.add("hide");
   infoPage.classList.remove("hide");
-  partOne.style.backgroundColor = `rgba(${color}, 1)`;
-  partTwo.style.backgroundColor = `rgba(${color}, 0.1)`;
-  partThree.style.backgroundColor = `rgba(${color}, 0.06)`;
+  infoPlanet.style.backgroundColor = `rgba(${color}, 1)`;
+  infoPlanet.style.boxShadow = `0 0 0 50px rgba(${color},0.1), 0 0 0 100px rgba(${color},0.06)`;
   printInfo(data.bodies, index);
 }
 // funktion för att rita upp stjärnor
@@ -115,6 +112,12 @@ function stars() {
     ctx.stroke(); //används för att skugga och blurr skall synas tydligare
   }
 }
+
+function closePage() {
+  wrapper.classList.remove("hide");
+  infoPage.classList.add("hide");
+}
+
 // eventlisteners för solen och planeterna så funktionerna körs när man klickar på dom.
 sun.addEventListener("click", () => {
   planetClick(`255, 208, 41`, 0); //färgkod och index från datan vi fetchade i början
@@ -147,6 +150,5 @@ neptunus.addEventListener("click", () => {
 
 //eventlistener på tillbaka knappen så vi kan toggla mellan sidorna
 closeButton.addEventListener("click", () => {
-  wrapper.classList.remove("hide");
-  infoPage.classList.add("hide");
+  closePage();
 });
