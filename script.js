@@ -1,4 +1,4 @@
-// DOM för  planeter och solen
+//DOM för  planeter och solen
 const sun = document.getElementById("sun");
 const mercury = document.getElementById("mercury");
 const venus = document.getElementById("venus");
@@ -10,10 +10,10 @@ const uranus = document.getElementById("uranus");
 const neptunus = document.getElementById("neptunus");
 const secondRing = document.getElementById("second-ring");
 
-// DOM för "planeten" i infodelen
-infoPlanet = document.getElementById("info-planet");
+//DOM för "planeten" i infodelen
+const infoPlanet = document.getElementById("info-planet");
 
-// DOM för informationen om planeten och solen
+//DOM för informationen om planeten och solen
 const planetTitle = document.getElementById("planet-desc-title");
 const planetTitleLatin = document.getElementById("planet-desc-latin");
 const planetDesc = document.getElementById("planet-desc-text");
@@ -23,17 +23,17 @@ const maxTemp = document.getElementById("max-temp");
 const minTemp = document.getElementById("min-temp");
 const moons = document.getElementById("moons");
 
-// DOM för att gömma de olika elementen
+//DOM för att gömma de olika elementen
 const infoPage = document.getElementById("info-page");
 const wrapper = document.getElementById("wrapper");
 const closeButton = document.getElementById("close-button");
 
-// DOM för stjärnorna
+//DOM för stjärnorna
 let canvas = document.getElementById("stars");
 
 // **************************************************************//
 
-// funktion för att hämta API-nyckel och sedan data från ett API
+//funktion för att hämta API-nyckel och sedan data från ett API
 async function getBodiesData() {
   let response = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys",
@@ -57,7 +57,7 @@ async function getBodiesData() {
 //anropar datan så det snabbt skall gå att skriva ut datan från den
 getBodiesData();
 
-// funktion för att skriva ut information om vald planet eller solen
+//funktion för att skriva ut information om vald planet eller solen
 function printInfo(data, num) {
   moons.innerHTML = ""; //nollställer listan för månarna
   planetTitle.innerText = data[num].name.toUpperCase();
@@ -92,7 +92,7 @@ function planetClick(color, index) {
   infoPlanet.style.boxShadow = `0 0 0 50px rgba(${color},0.1), 0 0 0 100px rgba(${color},0.06)`;
   printInfo(data.bodies, index);
 }
-// funktion för att rita upp stjärnor
+//funktion för att rita upp stjärnor
 function stars() {
   let ctx = canvas.getContext("2d"); //skapar en 2D kontext för canvasen. används för att sen kunna rita
 
@@ -112,7 +112,7 @@ function stars() {
     ctx.stroke(); //används för att skugga och blurr skall synas tydligare
   }
 }
-
+//funktion för att stänga ner infosidan
 function closePage() {
   wrapper.classList.remove("hide");
   infoPage.classList.add("hide");
