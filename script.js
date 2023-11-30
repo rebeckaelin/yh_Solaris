@@ -109,7 +109,7 @@ function stars() {
     ctx.shadowColor = "rgba(255, 255, 255, 1)"; //lägger på en skugga på varje cirkel
     ctx.shadowBlur = 2; //blurrar skuggan
     ctx.fill(); //lägger till stjärnorna på sidan
-    ctx.stroke(); //används för att skugga och blurr skall synas tydligare
+    ctx.stroke(); //skapar ju en "border" och används för att skugga och blurr skall synas tydligare
   }
 }
 //funktion för att stänga ner infosidan
