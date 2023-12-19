@@ -1,3 +1,5 @@
+länk till page: https://rebeckaelin.github.io/yh_Solaris/
+
 Pseudokod för Solaris:
 
 skapa basic struktur i HTML för samtliga delar, döp de logiskt.
