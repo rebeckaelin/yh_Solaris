@@ -43,6 +43,7 @@ async function getBodiesData() {
   );
   let keyData = await response.json();
   let apiKey = keyData.key;
+  console.log(keyData);
 
   let resp = await fetch(
     "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies",
@@ -52,6 +53,7 @@ async function getBodiesData() {
     }
   );
   data = await resp.json();
+  console.log(data);
   return data.bodies;
 }
 //anropar datan så det snabbt skall gå att skriva ut datan från den
